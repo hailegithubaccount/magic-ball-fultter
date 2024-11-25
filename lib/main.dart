@@ -1,64 +1,57 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 
 void main(){
-  runApp(MyWidget());
+  runApp(
+    MaterialApp(
+      home:Scaffold(
+        appBar: AppBar(
+          title: Text(
+            'ask me i tell you the answer'
 
+          ),
+          backgroundColor: Colors.blue,
+        ),
+        body: MyWidget(),
+      )
+    )
+  );
 }
 
-
-class MyWidget extends StatelessWidget {
+class MyWidget extends StatefulWidget {
+  const MyWidget({super.key});
   
+  
+ 
+
 
   @override
+  State<MyWidget> createState() => _MyWidgetState();
+}
+
+class _MyWidgetState extends State<MyWidget> {
+   int changeAnswer=1;
+
+  void change(){
+    changeAnswer=Random().nextInt(5)+1; 
+  }
+  @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('this is the row and the cloumne of the container'),
-          backgroundColor:Colors.blue,
-        ),
-        body:Row(
-          children: [
-            Container(
-              width: 100,
-              height: 100,
-              color: Colors.red,
-              margin:EdgeInsets.all(10),
-            child: Center(
-              child: Text('conatiner 1'),
-            ),
-             
-            ),
-              
-             Container(
-              width: 100,
-              height: 100,
-              color: Colors.red,
-               margin:EdgeInsets.all(10),
-               child: Center(
-                child: Text('container 2'),
-                
-               ),
-                
-               
-                
-              ),
-              CircleAvatar(
-                radius: 30,
-                backgroundColor:Colors.red,
-              )
-
+    return  Center(
+      child: TextButton(onPressed: (){
+        setState(() {
+         change();
           
-           
-              
+        });
+       
 
-            
-          ],
-          
-        )
-      ),
+      }, 
+      
+      child: Image.asset('images/ball$changeAnswer.png'),
+      )
 
-    );
+);
   }
 }
